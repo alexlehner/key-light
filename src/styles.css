@@ -1,0 +1,30 @@
+:root {
+  --color-canvas-default: #0d1117;
+
+  background-color: var(--color-canvas-default);
+}
+
+#root {
+  --color-selected-temperature: transparent;
+
+  transition: background-color 1000ms linear;
+  background-color: var(--color-selected-temperature);
+}
+
+body,
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+}
+
+.cta {
+  align-self: center;
+  margin: 0 auto;
+}
