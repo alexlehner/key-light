@@ -1,12 +1,15 @@
 {
-  "name": "react-typescript",
+  "author": "Alex Lehner <alex@alexlehner.com> (https://alexlehner.com/)",
+  "name": "key-light",
   "version": "1.0.0",
-  "description": "React and TypeScript example starter project",
+  "description": "Simulate key light color temperature via the browser",
   "keywords": [
-    "typescript",
-    "react",
-    "starter"
+    "key-light",
+    "keylight",
+    "color-temperature"
   ],
+  "license" : "MIT",
+  "private": true,
   "main": "src/index.tsx",
   "dependencies": {
     "color-temperature": "0.2.7",
