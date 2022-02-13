@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
-import { colorTemperature2rgb } from "color-temperature";
+import {colorTemperature2rgb} from 'color-temperature';
 
-import "./styles.css";
+import './styles.css';
 
 /**
  * Update the background color of the appropriate dom node
@@ -9,14 +9,11 @@ import "./styles.css";
  * @param color string
  */
 const setBackgroundColor = (color: string) => {
-  const rootElement = document.getElementById("root");
+  const rootElement = document.getElementById('root');
   if (rootElement) {
-    rootElement.style.setProperty(
-      "--color-selected-temperature",
-      color
-    );
+    rootElement.style.setProperty('--color-selected-temperature', color);
   }
-}
+};
 
 /**
  * Generate a CSS-friendly string representing the color we want to set the background
@@ -31,7 +28,7 @@ const getRgbFromKelvin = (value: number) => {
 
   const temperature = colorTemperature2rgb(value);
   return `rgb(${temperature.red}, ${temperature.green}, ${temperature.blue})`;
-}
+};
 
 export default function App() {
   const [temp, setTemp] = useState(0);
