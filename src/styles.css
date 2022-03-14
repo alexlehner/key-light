@@ -24,7 +24,7 @@ h1 {
   display: flex;
 }
 
-.cta {
-  align-self: center;
-  margin: 0 auto;
+.colorSelect {
+  align-self: end;
+  margin: 1rem;
 }

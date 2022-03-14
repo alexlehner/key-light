@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import {colorTemperature2rgb} from 'color-temperature';
+import {Group, Button} from '@mantine/core';
 
 import './styles.css';
 
@@ -39,24 +40,48 @@ export default function App() {
 
   return (
     <div className="App">
-      <button className="cta" onClick={() => setTemp(2700)}>
-        Set Temp 2700
-      </button>
-      <button className="cta" onClick={() => setTemp(3000)}>
-        Set Temp 3000
-      </button>
-      <button className="cta" onClick={() => setTemp(3500)}>
-        Set Temp 3500
-      </button>
-      <button className="cta" onClick={() => setTemp(4000)}>
-        Set Temp 4000
-      </button>
-      <button className="cta" onClick={() => setTemp(5000)}>
-        Set Temp 5000
-      </button>
-      <button className="cta" onClick={() => setTemp(0)}>
-        Off
-      </button>
+      <Group className="colorSelect">
+        <Button
+          variant="outline"
+          onClick={() => {
+            setTemp(2700);
+          }}
+        >
+          2700
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => {
+            setTemp(3000);
+          }}
+        >
+          3000
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => {
+            setTemp(4000);
+          }}
+        >
+          4000
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => {
+            setTemp(5000);
+          }}
+        >
+          5000
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => {
+            setTemp(0);
+          }}
+        >
+          Off
+        </Button>
+      </Group>
     </div>
   );
 }
