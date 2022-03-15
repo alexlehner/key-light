@@ -3,6 +3,7 @@ import {colorTemperature2rgb} from 'color-temperature';
 import {MantineProvider} from '@mantine/core';
 import {getRgbFromKelvin} from './utils';
 
+import InfoDrawer from './InfoDrawer';
 import SelectTemp from './SelectTemp';
 
 import './styles.css';
@@ -21,6 +22,7 @@ const setBackgroundColor = (color: string) => {
 
 export default function App() {
   const [temp, setTemp] = useState(0);
+  const [drawerOpened, setDrawerOpened] = useState(false);
 
   useEffect(() => {
     setBackgroundColor(getRgbFromKelvin(temp));
@@ -29,6 +31,10 @@ export default function App() {
   return (
     <MantineProvider theme={{colorScheme: 'dark'}}>
       <div className="App">
+        <InfoDrawer
+          drawerOpened={drawerOpened}
+          setDrawerOpened={setDrawerOpened}
+        />
         <SelectTemp setTemp={setTemp} temp={temp} />
       </div>
     </MantineProvider>
