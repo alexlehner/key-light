@@ -1,29 +1,42 @@
-import "./styles.css";
-import { colorTemperature2rgb } from "color-temperature";
+import {useState, useEffect} from 'react';
+import {colorTemperature2rgb} from 'color-temperature';
+import {MantineProvider} from '@mantine/core';
+import {getRgbFromKelvin} from './utils';
 
-const temps = [5000, 4000, 3500, 3000, 2700];
+import InfoDrawer from './InfoDrawer';
+import SelectTemp from './SelectTemp';
+
+import './styles.css';
+
+/**
+ * Update the background color of the appropriate dom node
+ *
+ * @param color string
+ */
+const setBackgroundColor = (color: string) => {
+  const rootElement = document.getElementById('root');
+  if (rootElement) {
+    rootElement.style.setProperty('--color-selected-temperature', color);
+  }
+};
 
 export default function App() {
-  const handleClick = () => {
-    let temperature = colorTemperature2rgb(
-      temps[Math.floor(Math.random() * temps.length)]
-    );
-    console.log(temperature);
+  const [temp, setTemp] = useState(0);
+  const [drawerOpened, setDrawerOpened] = useState(false);
 
-    const rootElement = document.getElementById("root");
-    if (rootElement) {
-      rootElement.style.setProperty(
-        "--color-selected-temperature",
-        `rgb(${temperature.red}, ${temperature.green}, ${temperature.blue})`
-      );
-    }
-  };
+  useEffect(() => {
+    setBackgroundColor(getRgbFromKelvin(temp));
+  }, [temp]);
 
   return (
-    <div className="App">
-      <button className="cta" onClick={handleClick}>
-        Shuffle temperature
-      </button>
-    </div>
+    <MantineProvider theme={{colorScheme: 'dark'}}>
+      <div className="App">
+        <InfoDrawer
+          drawerOpened={drawerOpened}
+          setDrawerOpened={setDrawerOpened}
+        />
+        <SelectTemp setTemp={setTemp} temp={temp} />
+      </div>
+    </MantineProvider>
   );
 }

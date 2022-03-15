@@ -18,13 +18,27 @@ h1 {
 }
 
 .App {
-  height: 100vh;
-  width: 100vw;
+  height: calc(100vh - 2rem);
+  width: calc(100vw - 2rem);
+  padding: 1rem;
 
   display: flex;
+  flex-flow: column nowrap;
 }
 
-.cta {
-  align-self: center;
-  margin: 0 auto;
+.infoDrawer {
+  text-align: right;
+}
+
+.colorSelect {
+  flex-grow: 1;
+  align-items: flex-end;
+}
+
+.colorSwatch {
+  cursor: pointer;
+}
+
+.onOff {
+  color: #fff;
 }
