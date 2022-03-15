@@ -28,3 +28,11 @@ h1 {
   align-self: end;
   margin: 1rem;
 }
+
+.colorSwatch {
+  cursor: pointer;
+}
+
+.onOff {
+  color: #fff;
+}

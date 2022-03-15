@@ -1,6 +1,9 @@
 import {useState, useEffect} from 'react';
 import {colorTemperature2rgb} from 'color-temperature';
-import {Group, Button} from '@mantine/core';
+import {MantineProvider} from '@mantine/core';
+import {getRgbFromKelvin} from './utils';
+
+import SelectTemp from './SelectTemp';
 
 import './styles.css';
 
@@ -16,21 +19,6 @@ const setBackgroundColor = (color: string) => {
   }
 };
 
-/**
- * Generate a CSS-friendly string representing the color we want to set the background
- *
- * @param value number
- * @returns string
- */
-const getRgbFromKelvin = (value: number) => {
-  if (value == 0) {
-    return 'transparent';
-  }
-
-  const temperature = colorTemperature2rgb(value);
-  return `rgb(${temperature.red}, ${temperature.green}, ${temperature.blue})`;
-};
-
 export default function App() {
   const [temp, setTemp] = useState(0);
 
@@ -39,49 +27,10 @@ export default function App() {
   }, [temp]);
 
   return (
-    <div className="App">
-      <Group className="colorSelect">
-        <Button
-          variant="outline"
-          onClick={() => {
-            setTemp(2700);
-          }}
-        >
-          2700
-        </Button>
-        <Button
-          variant="outline"
-          onClick={() => {
-            setTemp(3000);
-          }}
-        >
-          3000
-        </Button>
-        <Button
-          variant="outline"
-          onClick={() => {
-            setTemp(4000);
-          }}
-        >
-          4000
-        </Button>
-        <Button
-          variant="outline"
-          onClick={() => {
-            setTemp(5000);
-          }}
-        >
-          5000
-        </Button>
-        <Button
-          variant="outline"
-          onClick={() => {
-            setTemp(0);
-          }}
-        >
-          Off
-        </Button>
-      </Group>
-    </div>
+    <MantineProvider theme={{colorScheme: 'dark'}}>
+      <div className="App">
+        <SelectTemp setTemp={setTemp} temp={temp} />
+      </div>
+    </MantineProvider>
   );
 }
