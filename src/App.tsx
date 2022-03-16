@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react';
-import {colorTemperature2rgb} from 'color-temperature';
-import {MantineProvider} from '@mantine/core';
-import {getRgbFromKelvin} from './utils';
 
+import {MantineProvider} from '@mantine/core';
+import {useLocalStorage} from 'usehooks-ts';
+
+import {getRgbFromKelvin} from './utils';
 import InfoDrawer from './InfoDrawer';
 import SelectTemp from './SelectTemp';
 
@@ -21,11 +22,14 @@ const setBackgroundColor = (color: string) => {
 };
 
 export default function App() {
-  const [temp, setTemp] = useState(0);
+  const [persistedTemp, setPersistedTemp] = useLocalStorage('previousTemp', 0);
+
+  const [temp, setTemp] = useState(persistedTemp);
   const [drawerOpened, setDrawerOpened] = useState(false);
 
   useEffect(() => {
     setBackgroundColor(getRgbFromKelvin(temp));
+    setPersistedTemp(temp);
   }, [temp]);
 
   return (
